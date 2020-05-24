@@ -15,7 +15,7 @@ module.exports = {
       .addFields(
         { name: 'Version', value: version, inline: false },
         { name: 'Author', value: 'Orange Group Tech', inline:false},
-        { name: 'Source', value: 'https://github.com/OrangeEcho-Devs/OrangeEchoPublicBeta', inline: false },
+        { name: 'Source', value: 'https://github.com/OrangeEcho-Devs/OrangeEchoAlpha', inline: false },
         { name: 'Written in', value: '[Discord.js v12](https://discord.js.org/)', inline: false },
 
 			)
