@@ -13,8 +13,8 @@ module.exports = {
 	const channel = message.channel
 	const reason = args.join(' ')
   try {
-    Community = 685046907961212928
-    channel.guild.get_role(Community)
+    Community = '685046907961212928'
+    member.roles.cache.some(role => role.name === Community);
     channel.updateOverwrite(channel.guild.roles.Community, { SEND_MESSAGES: false });
 		if(args != ''){respond('🔒','<#'+message.channel+'> was locked.\nReason: '+reason, message.channel)}
 		else{respond('🔒','<#'+message.channel+'> was locked. \n', message.channel)}
