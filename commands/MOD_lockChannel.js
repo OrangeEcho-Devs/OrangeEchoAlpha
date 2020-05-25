@@ -12,16 +12,11 @@ module.exports = {
 	const fs = require('fs');
 	const channel = message.channel
 	const reason = args.join(' ')
-    try {
-	    let previousOverwrites = channel.permissionOverwrites.has(message.channel.guild.id) ? channel.permissionOverwrites.get(message.channel.guild.id) : { json: {}, allow: 0, deny: 0 };
-    if (previousOverwrites.json === false) {
-      return 'this channel is already locked ya doofus';
-    }
-    channel.send(`**This channel has been locked down.**\n${reason}`);
-    channel.updateOverwrite(message.channel.guild.id, previousOverwrites.allow & ~2048, previousOverwrites.deny | 2048, 'Community', reason)
-      .then(() => {
-      message.channel.send(`\`${channel.name}\` has been locked down, no more normies`);
-      })
+  try {
+    channel.guild.get_role(Community)
+    channel.updateOverwrite(channel.guild.roles.Community, { SEND_MESSAGES: false });
+		if(args != ''){respond('🔒','<#'+message.channel+'> was locked.\nReason: '+reason, message.channel)}
+		else{respond('🔒','<#'+message.channel+'> was locked. \n', message.channel)}
 		modaction(this.name, message.author.tag, message.channel.name, message.content)
 	}catch(error) {
 		respond('Error', 'Something went wrong.\n'+error+`\nMessage: ${message}\nArgs: ${args}\n`, message.channel)
@@ -29,5 +24,5 @@ module.exports = {
 		// Your code broke (Leave untouched in most cases)
 		console.error('an error has occured', error);
 		}
-
+		  
   }}
